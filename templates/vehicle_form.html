@@ -9,12 +9,11 @@
     <main id="main" class="main">
 
          <!-- Multi Columns Form -->
-        <form class="row g-3" method="post">
+        <form class="row g-3" method="post" enctype="multipart/form-data" action="{% url 'vehicle_create' %}">
             {% csrf_token %}
             <div class="col-md-12">
-                <label for="inputEmail" class="form-label">Owner Email</label>
+                <label for="owner" class="form-label">Owner</label>
                 {{ form.owner }}
-                {% comment %} <input type="email" name="owner" class="form-control" id="inputEmail" placeholder="Email of the registered owner" required> {% endcomment %}
                 {% if form.owner.errors %}
                     <div class="invalid-feedback">
                         {{ form.owner.errors|join:", " }}
@@ -22,9 +21,8 @@
                 {% endif %}
             </div>
             <div class="col-md-6">
-                <label for="inputPlateNumber" class="form-label">Plate Number</label>
+                <label for="plate_number" class="form-label">Plate Number</label>
                 {{ form.plate_number }}
-                {% comment %} <input type="text" name="plate_number" class="form-control" id="inputPlateNumber" placeholder="License Plate Number" required> {% endcomment %}
                 {% if form.plate_number.errors %}
                     <div class="invalid-feedback">
                         {{ form.plate_number.errors|join:", " }}
@@ -32,7 +30,7 @@
                 {% endif %}
             </div>
             <div class="col-md-6">
-                <label for="id_type" class="form-label">Vehicle Type</label>
+                <label for="type" class="form-label">Vehicle Type</label>
                 {{ form.type }}
                 {% if form.type.errors %}
                     <div class="invalid-feedback">
@@ -40,8 +38,8 @@
                     </div>
                 {% endif %}
             </div>
-            <div class="col-6">
-                <label for="id_model" class="form-label">Model</label>
+            <div class="col-md-6">
+                <label for="model" class="form-label">Model</label>
                 {{ form.model }}
                 {% if form.model.errors %}
                     <div class="invalid-feedback">
@@ -50,7 +48,7 @@
                 {% endif %}
             </div>
             <div class="col-md-6">
-                <label for="id_status" class="form-label">Status</label>
+                <label for="status" class="form-label">Status</label>
                 {{ form.status }}
                 {% if form.status.errors %}
                     <div class="invalid-feedback">

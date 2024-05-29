@@ -13,9 +13,7 @@ class OwnerForm(forms.ModelForm):
             "phone": forms.TextInput(attrs={"class": "form-control"}),
         }
 
-
 class VehicleForm(forms.ModelForm):
-
     class Meta:
         model = Vehicle
         fields = ["owner", "status", "model", "plate_number", "type"]
@@ -24,10 +22,8 @@ class VehicleForm(forms.ModelForm):
             "status": forms.Select(attrs={"class": "form-control"}),
             "model": forms.TextInput(attrs={"class": "form-control"}),
             "plate_number": forms.TextInput(attrs={"class": "form-control"}),
-            "type": forms.TextInput(attrs={"class": "form-control"}),
+            "type": forms.Select(attrs={"class": "form-control"}),
         }
-
 
 class RecognitionForm(forms.Form):
     license_plate = forms.ImageField()
- 

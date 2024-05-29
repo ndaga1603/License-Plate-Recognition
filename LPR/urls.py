@@ -7,8 +7,7 @@ from records.views import DashboardView, OwnerCreateView, VehicleCreateView, Pla
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", DashboardView.as_view(), name="dashboard"),
-    path("owner/", OwnerCreateView.as_view(), name="owner"),
-    path("vehicle/", VehicleCreateView.as_view(), name="vehicle"),
+    path("owner/create/", OwnerCreateView.as_view(), name="owner_create"),
+    path("vehicle/create/", VehicleCreateView.as_view(), name="vehicle_create"),
     path("recognition/", PlateNumberRecognitionView.as_view(), name="recognition"),
-    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

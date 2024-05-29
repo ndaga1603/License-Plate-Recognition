@@ -34,11 +34,11 @@
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-truck-front"></i>
+                      <i class="bi bi-truck"></i>
                     </div>
                     <div class="ps-3">
                       <h6>{{ number_of_vehicle }}</h6>
-                      <span class="text-success small pt-1 fw-bold"></span> <span class="text-muted small pt-2 ps-1"></span>
+                      <span class="text-success small pt-1 fw-bold">All Typesl</span> <span class="text-muted small pt-2 ps-1"></span>
 
                     </div>
                   </div>
@@ -93,12 +93,12 @@
 
             </div><!-- End Customers Card -->
 
-            <!-- Recent Sales -->
+            <!-- Vehicles List -->
             <div class="col-12">
               <div class="card recent-sales overflow-auto">
 
                 <div class="card-body">
-                  <h5 class="card-title">List of Vehicles <span>| </span></h5>
+                  <h5 class="card-title">List of Vehicles <span> </span></h5>
 
                   <table class="table table-borderless datatable">
                     <thead>
@@ -129,9 +129,48 @@
                 </div>
 
               </div>
-            </div><!-- End Recent Sales -->
+            </div><!-- End Vehicles List -->
 
-            <!-- Reports -->
+             <!-- Owner List -->
+            <div class="col-12">
+              <div class="card recent-sales overflow-auto">
+
+                <div class="card-body">
+                  <h5 class="card-title">List of Registered Owners <span> </span></h5>
+
+                  <table class="table table-borderless datatable">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email Address</th>
+                        <th scope="col">Phone Number</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      {% for owner in owners %}
+                      <tr>
+                        <th scope="row"><a href="#">{{ owner.id }}</a></th>
+                        <td>{{ owner.first_name }}</td>
+                        <td>{{ owner.last_name }}</td>
+                        <td>{{ owner.email }}</td>
+                        <td>{{ owner.phone }}</td>
+                      </tr>
+                      {% endfor %}
+                     
+                    </tbody>
+                  </table>
+
+                </div>
+
+              </div>
+            </div><!-- End Owner List -->
+
+
+
+            {% comment %} <!-- Reports -->
             <div class="col-12">
               <div class="card">
 
@@ -195,7 +234,7 @@
                 </div>
 
               </div>
-            </div><!-- End Reports -->
+            </div><!-- End Reports --> {% endcomment %}
 
           </div>
         </div><!-- End Left side columns -->

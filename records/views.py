@@ -23,6 +23,7 @@ class DashboardView(TemplateView):
         context['dept_percentage'] = dept_percentage
         context['clean_percentage'] = clean_percentage
         context['vehicles'] = Vehicle.objects.all()
+        context['owners'] = Owner.objects.all()
         return context
 
 
@@ -36,7 +37,7 @@ class OwnerCreateView(CreateView):
 class VehicleCreateView(CreateView):
     model = Vehicle
     form_class = VehicleForm
-    template_name = 'vehicle_form.html'
+    template_name = "vehicle_form.html"
     success_url = reverse_lazy("dashboard")
 
 
