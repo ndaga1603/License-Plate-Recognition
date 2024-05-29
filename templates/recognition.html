@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block main %}
+{% include "header.html" %}
+{% include "sidebar.html" %}
+<div class="main">
+
+    <!-- ======= Main ======= -->
+    <main id="main" class="main">
+
+        {% if license_plate %}
+            <!-- Display the uploaded image -->
+            <img src="{{ license_plate.url }}" alt="License Plate Image">
+        {% else %}
+            <!-- Display the form for uploading an image -->
+            <form class="mb-3" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">License Plate Image</label>
+                    <input class="form-control" name="license_plate" type="file" id="formFile">
+                </div>
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        {% endif %}
+
+    </main>
+ 
+{% include "footer.html" %}
+{% endblock main %}
