@@ -7,14 +7,14 @@ from PIL import Image
 
 
 class LicensePlateRecognition:
-    def __init__(self, file_path):
-        self.file_path = file_path
-        self.pil_image = Image.open(self.file_path)
+    def __init__(self, image_file):
+        self.image_file = image_file
+        self.pil_image = Image.open(self.image_file)
         self.llm = ChatOllama(model="llava", temperature=0)
 
-    def convert_to_base64(self, pil_image):
+    def convert_to_base64(self):
         buffered = BytesIO()
-        pil_image.save(buffered, format="JPEG")
+        self.pil_image.save(buffered, format="JPEG")
         img_str = base64.b64encode(buffered.getvalue()).decode("utf-8")
         return img_str
 
@@ -36,9 +36,9 @@ class LicensePlateRecognition:
 
         return [HumanMessage(content=content_parts)]
 
-    def recognize(self, prompt_func, llm):
-        image_b64 = self.convert_to_base64(self.pil_image)  # Define and assign a value to "image_b64"
-        chain = prompt_func | llm | StrOutputParser()
+    def recognize(self):
+        image_b64 = self.convert_to_base64()
+        chain = self.prompt_func | self.llm | StrOutputParser()
 
         return chain.invoke(
             {
@@ -46,4 +46,3 @@ class LicensePlateRecognition:
                 "image": image_b64,
             }
         )
-    

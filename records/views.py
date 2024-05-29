@@ -3,6 +3,7 @@ from .models import Owner, Vehicle
 from .forms import OwnerForm, VehicleForm, RecognitionForm
 from django.urls import reverse_lazy
 from django.views.generic import FormView
+from .lpnrec import LicensePlateRecognition
 
 class DashboardView(TemplateView):
     template_name = 'dashboard.html'
@@ -43,12 +44,12 @@ class PlateNumberRecognitionView(FormView):
     template_name = 'recognition.html'
     form_class = RecognitionForm
     success_url = reverse_lazy('recognition')
-    
+
     def form_valid(self, form):
         license_plate_image = form.cleaned_data['license_plate']
-        # Process the image here, for example, save it to a directory and display it
-        print(license_plate_image)
-        return super().form_valid(form)
+        recognizer = LicensePlateRecognition(license_plate_image)
+        result = recognizer.recognize()
+        return self.render_to_response(self.get_context_data(result=result, form=form))
 
     def form_invalid(self, form):
         return self.render_to_response(self.get_context_data(form=form))
