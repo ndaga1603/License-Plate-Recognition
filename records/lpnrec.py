@@ -37,6 +37,7 @@ class LicensePlateRecognition:
         return [HumanMessage(content=content_parts)]
 
     def recognize(self, prompt_func, llm):
+        image_b64 = self.convert_to_base64(self.pil_image)  # Define and assign a value to "image_b64"
         chain = prompt_func | llm | StrOutputParser()
 
         return chain.invoke(

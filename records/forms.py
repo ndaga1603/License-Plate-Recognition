@@ -27,31 +27,6 @@ class VehicleForm(forms.ModelForm):
             "type": forms.TextInput(attrs={"class": "form-control"}),
         }
 
-    # def validate_plate_number(self):
-    #     plate_number = self.cleaned_data["plate_number"]
-    #     print(plate_number)
-    #     if Vehicle.objects.filter(plate_number=plate_number).exists():
-    #         print("Plate number exists")
-    #         raise forms.ValidationError("This plate number is already in use")
-    #     return plate_number
-
-    # def validate_owner(self):
-    #     owner = self.cleaned_data["owner"]
-    #     print(owner)
-    #     if Owner.objects.filter(owner=owner).exists():
-    #         return owner
-    #     else:
-    #         print("Owner does not exist")
-    #         raise forms.ValidationError("This owner does not exist")
-
-    # def form_valid(self, form):
-    #     owner = form.validate_owner()
-    #     plate_number = form.validate_plate_number()
-    #     form.instance.owner = owner
-    #     form.instance.plate_number = plate_number
-    #     form.save()
-    #     return super().form_valid(form)
-
 
 class RecognitionForm(forms.Form):
     license_plate = forms.ImageField()
